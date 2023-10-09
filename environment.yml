@@ -10,3 +10,5 @@ dependencies:
   - networkx
   - lark
   - tabulate
+  - fastcore
+  - psutil
