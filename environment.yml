@@ -4,3 +4,9 @@ channels:
   - https://repo.mamba.pm/conda-forge
 dependencies:
   - ipycanvas
+  - pandas
+  - jinja2
+  - jsonpath-ng
+  - networkx
+  - lark
+  - tabulate
