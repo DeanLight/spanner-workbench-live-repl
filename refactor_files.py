@@ -1,5 +1,7 @@
 import os
 
+supported_ie_funcs = "PREDEFINED_IE_FUNCS = [PYRGX, PYRGX_STRING, JsonPath, JsonPathFull]"
+
 def refactor_files():
     """
     A function that removes all imports of fastcore or nbdev libraries as they include unsupported libraries
@@ -12,10 +14,13 @@ def refactor_files():
                     file_content = file.readlines()
                 with open(file_path, 'w') as file:
                     for line in file_content:
-                        if any(unwanted_lib in line for unwanted_lib in ['fastcore', 'nbdev']):
+                        if any(unwanted_lib in line for unwanted_lib in ['fastcore', 'nbdev','nlp','rust']):
                             continue
                         elif 'patch(*args, **kwargs)(func)' in line:
                             file.write('        setattr(cls, func.__name__, func)')
+                        elif 'class Session' in line:
+                            file.write(f"{supported_ie_funcs}\n")
+                            file.write(line)
                         else:
                             file.write(line)
 
