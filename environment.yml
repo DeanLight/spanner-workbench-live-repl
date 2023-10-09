@@ -11,4 +11,4 @@ dependencies:
   - lark
   - tabulate
   - fastcore
-  - psutil
+  - nbdev
