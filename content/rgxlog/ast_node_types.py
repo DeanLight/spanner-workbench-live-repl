@@ -5,7 +5,6 @@ __all__ = ['get_term_list_string', 'RelationDeclaration', 'Relation', 'IERelatio
            'Assignment', 'ReadAssignment']
 
 # %% ../nbs/03a_ast_node_types.ipynb 4
-from nbdev.showdoc import show_doc
 
 # %% ../nbs/03a_ast_node_types.ipynb 5
 from typing import List, Tuple, Set, Union, Sequence

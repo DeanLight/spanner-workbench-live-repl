@@ -5,7 +5,6 @@ __all__ = ['RESERVED_RELATION_PREFIX', 'FALSE_VALUE', 'TRUE_VALUE', 'logger', 'l
            'SqliteEngine']
 
 # %% ../nbs/02a_engine.ipynb 5
-from nbdev.showdoc import show_doc
 from fastcore.basics import patch
 
 # %% ../nbs/02a_engine.ipynb 6
