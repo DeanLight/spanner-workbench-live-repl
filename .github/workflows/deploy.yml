@@ -19,7 +19,9 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
-
+      - name: Refactor Rgxlog Files
+        run: |
+          python3 refactor_files.py
       - name: Install mamba
         uses: mamba-org/setup-micromamba@v1
         with:
