@@ -1,7 +1,8 @@
 import os
-
+modules_to_remove = ['fastcore', 'nbdev', 'nlp', 'rust']
 supported_ie_funcs = "PREDEFINED_IE_FUNCS = [PYRGX, PYRGX_STRING, JsonPath, JsonPathFull]"
 dirname = os.path.dirname(__file__)
+
 def remove_predefined_ie_funcs(file_path):
     with open(file_path, 'r') as file:
         file_content = file.readlines()
@@ -11,17 +12,18 @@ def remove_predefined_ie_funcs(file_path):
     for i, line in enumerate(file_content):
         if 'PREDEFINED_IE_FUNCS' in line and start_index is None:
             start_index = i
-            print(start_index)
         elif start_index is not None and ']' in line:
             end_index = i
-            print(end_index)
             break
 
     if start_index is not None and end_index is not None:
+        # Delete the old list of PREDEFINED_IE_FUNCS and replace with new one
         del file_content[start_index:end_index + 1]
+        file_content.insert(start_index,supported_ie_funcs)
 
     with open(file_path, 'w') as file:
         file.writelines(file_content)
+
 
 def refactor_files():
     """
@@ -35,13 +37,12 @@ def refactor_files():
                     file_content = file.readlines()
                 with open(file_path, 'w') as file:
                     for line in file_content:
-                        if any(unwanted_lib in line for unwanted_lib in ['fastcore', 'nbdev','nlp','rust']):
+                        # Don't include any imports of unwanted libraries e.g nbdev/fastcore...
+                        if 'import' in line and any(module in line for module in modules_to_remove):
                             continue
+                        # Override the patch line in `patch_method` as we don't import fastcore anymore
                         elif 'patch(*args, **kwargs)(func)' in line:
                             file.write('        setattr(cls, func.__name__, func)')
-                        elif 'class Session' in line:
-                            file.write(f"{supported_ie_funcs}\n")
-                            file.write(line)
                         else:
                             file.write(line)
 
