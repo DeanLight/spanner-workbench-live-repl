@@ -7,7 +7,7 @@ __all__ = ['logger', 'WINDOWS_OS', 'IS_POSIX', 'GOOGLE_DRIVE_URL', 'GOOGLE_DRIVE
 # %% ../nbs/00a_utils.ipynb 2
 import shlex
 import logging
-#import psutil
+import psutil
 import requests
 from pathlib import Path
 from subprocess import Popen, PIPE
