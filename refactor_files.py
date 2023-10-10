@@ -10,12 +10,12 @@ def remove_predefined_ie_funcs(file_path):
     start_index = None
     end_index = None
     for i, line in enumerate(file_content):
-        if 'PREDEFINED_IE_FUNCS' in line and start_index is None:
+        if 'PREDEFINED_IE_FUNCS' in line.split('=')[0] and start_index is None:
             start_index = i
         elif start_index is not None and ']' in line:
             end_index = i
             break
-
+    print(start_index,end_index)
     if start_index is not None and end_index is not None:
         # Delete the old list of PREDEFINED_IE_FUNCS and replace with new one
         del file_content[start_index:end_index + 1]
