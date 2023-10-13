@@ -1,5 +1,5 @@
 import os
-modules_to_remove = ['fastcore', 'nbdev', 'nlp', 'rust']
+modules_to_remove = ['fastcore', 'nbdev', 'nlp', 'rust', 'psutil']
 supported_ie_funcs = "PREDEFINED_IE_FUNCS = [PYRGX, PYRGX_STRING, JsonPath, JsonPathFull]"
 dirname = os.path.dirname(__file__)
 
